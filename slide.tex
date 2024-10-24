@@ -394,95 +394,64 @@
 
     \begin{figure}
         \centering
-        \includegraphics[width=0.7\textwidth]{/Users/tanglixinran/Downloads/河海大学/11.2周六课汇报/fig/Fig_2.png} % 替换为图2的具体文件名
+        \includegraphics[width=\textwidth]{/Users/tanglixinran/Downloads/河海大学/11.2周六课汇报/fig/Fig_2.png} % 替换为图2的具体文件名
+        \vspace{-0.8cm}  % 调整标题和图片之间的距离
         \caption{系统初始化过程}
         \label{Fig_2}
     \end{figure}
 \end{frame}
 
 \subsubsection{用户注册}
-% 第一页幻灯片
-\begin{frame}{用户注册过程 (1/2)}
+\begin{frame}{用户注册过程}
     \begin{itemize}
-        \item 用户需要将其设备与中央管理员 (CA) 注册以实时获取患者的健康数据。整个注册过程如下：
-        \begin{itemize}
-            \item 第一步：用户选择 \textit{UID}、\textit{UPW} 和一个随机数 \textit{N}，计算 \textit{RUID} 和 \textit{RUPW}，然后通过安全通道将注册请求消息 \textit{RREQ} 发送给CA。
-            \item 第二步：CA收到 \textit{RREQ} 后，选择随机整数 \textit{G1} 并计算 \textit{A1}、\textit{A2} 和用户的临时身份 \textit{UTID}。CA将这些信息存储起来，并将 \textit{A2} 作为注册回复发送给用户。
-        \end{itemize}
+        \item 用户需要将其设备与中央管理员 (CA) 注册以实时获取患者的健康数据。
+        \item 整个注册过程如图\ref{Fig_3}所示：
     \end{itemize}
-\end{frame}
-
-% 第二页幻灯片
-\begin{frame}{用户注册过程 (2/2)}
-    \begin{itemize}
-        \item 第三步：用户从CA收到回复后，获取随机私钥 \textit{G1} 和用户的临时身份 \textit{UTID}。用户使用 \textit{G1}、\textit{UTID} 和 \textit{RUPW} 计算 \textit{D}，并将以下信息存储在内存中：%\textit{G1}、\textit{UTID}、\textit{N} 和 \textit{D}
-    \end{itemize}
-
+       
     \begin{figure}
         \centering
-        \includegraphics[width=0.8\textwidth]{/Users/tanglixinran/Downloads/河海大学/11.2周六课汇报/fig/Fig_3.png} % 替换为图3的具体文件名
+        \includegraphics[width=\textwidth]{/Users/tanglixinran/Downloads/河海大学/11.2周六课汇报/fig/Fig_3.png} % 替换为图3的具体文件名
         \caption{用户注册过程}
+        \label{Fig_3}
     \end{figure}
 \end{frame}
+
+
 
 \subsubsection{设备注册}
 % 第一页幻灯片
-\begin{frame}{设备注册过程 (1/2)}
+\begin{frame}{设备注册过程}
     \begin{itemize}
         \item 每个物联网设备 (IoTD) 在向用户传输患者的健康数据之前，需要与中央管理员 (CA) 进行注册。
-        \item 设备注册过程如下：
-        \begin{itemize}
-            \item 第一步：设备从其处理器中获取身份详情 \textit{DID}，选择随机密钥值 \textit{N1}，并计算 \textit{RDID}，通过安全通道发送注册请求。
-            \item 第二步：网关将设备的请求转发给CA，并添加其密钥值 \textit{RG} 到 \textit{RDID}。
-            \item 第三步：CA从接收到的 \textit{RDID} 中提取设备的身份 \textit{DID}，选择随机整数 \textit{G2} 并计算临时身份 \textit{DTID}。然后将注册回复发送回设备。
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-
-% 第二页幻灯片
-\begin{frame}{设备注册过程 (2/2)}
-    \begin{itemize}
-        \item 第四步：网关将回复转发给IoTD，设备通过XOR运算获取 \textit{G2}。
-        \item 第五步：设备使用 \textit{G2} 计算其临时身份 \textit{DTID}，并将相关信息存储在内存中。
+        \item 设备注册过程如图\ref{Fig_4}所示：
     \end{itemize}
 
     \begin{figure}
         \centering
-        \includegraphics[width=0.8\textwidth]{/Users/tanglixinran/Downloads/河海大学/11.2周六课汇报/fig/Fig_4.png} % 替换为图4的具体文件名
+        \includegraphics[width=0.9\textwidth]{/Users/tanglixinran/Downloads/河海大学/11.2周六课汇报/fig/Fig_4.png} % 替换为图4的具体文件名
+        \vspace{-0.3cm}  % 调整标题和图片之间的距离
         \caption{设备注册过程}
+        \label{Fig_4}
     \end{figure}
 \end{frame}
 
+
 \subsubsection{登陆与认证}
 % 第一页幻灯片
-\begin{frame}{登录与认证过程 (1/3)}
+\begin{frame}{登录与认证过程 (1/2)}
     \begin{itemize}
         \item 该部分展示了用户和物联网设备 (IoTD) 之间的登录和相互认证过程，用户需要通过CA和网关进行身份认证。
-        \item 登录和认证过程如下：
-        \begin{itemize}
-            \item 第一步：用户输入注册时使用的 \textit{UID} 和 \textit{UPW}，计算 \textit{RUID}、\textit{RUPW}、\textit{K} 和 \textit{D1}。然后，用户将 \textit{K}、\textit{RDID} 和时间戳 \textit{TS} 发送给CA。
-            \item 第二步：CA收到用户的信息后，验证时间戳 \textit{TS} 是否在有效时间范围内，并验证 \textit{K'} 是否等于 \textit{K}。如果验证成功，CA计算 \textit{Y1}、\textit{Y2}、临时身份 \textit{DTID} 和会话密钥 \textit{SKD}，并将这些信息通过网关发送给IoTD。
-            \item 第三步：网关收到CA的信息后，验证时间戳 \textit{TS} 的有效性，并将 \textit{Y1}、\textit{Y2}、\textit{DTID} 和 \textit{SKD} 转发给IoTD。
-        \end{itemize}
+        \item 登录和认证过程如图\ref{Fig_5}所示：
     \end{itemize}
 \end{frame}
 
-% 第二页幻灯片
-\begin{frame}{登录与认证过程 (2/3)}
-    \begin{itemize}
-        \item 第四步：IoTD验证时间戳 \textit{TS} 是否有效，并使用 \textit{Y1} 和 \textit{DTID} 计算 \textit{G1}，验证 \textit{Y2}，以确保接收到的信息未被篡改。随后，IoTD生成会话密钥 \textit{SK}，并更新自身的身份标识符。
-        \item 第五步：IoTD将更新后的身份标识符和时间戳发送回网关，网关验证消息后，将其转发给CA。
-        \item 第六步：CA验证IoTD的回复，并更新IoTD的身份标识符 \textit{DNEW\_TID}。同时，CA生成用户的会话密钥 \textit{SKU}，并将用户和设备的身份更新，最后将这些信息发送给用户。
-        \item 第七步：用户接收信息后，验证 \textit{SKU} 和其他参数是否正确。如果验证成功，用户完成登录与认证流程，且可以安全地访问IoTD的数据。
-    \end{itemize}
-\end{frame}
-
-% 第三页幻灯片
-\begin{frame}{登录与认证过程 (3/3)}
+\begin{frame}{登录与认证过程 (2/2)}
     \begin{figure}
         \centering
-        \includegraphics[width=0.4\textwidth]{/Users/tanglixinran/Downloads/河海大学/11.2周六课汇报/fig/Fig_5.png} % 替换为图5的具体文件名
+        \includegraphics[width=0.5\textwidth]{/Users/tanglixinran/Downloads/河海大学/11.2周六课汇报/fig/Fig_5.png} % 替换为图5的具体文件名
+        \vspace{-0.4cm}  % 调整标题和图片之间的距离
         \caption{登录与认证过程}
+        \label{Fig_5}
     \end{figure}
 \end{frame}
 
